@@ -1,6 +1,6 @@
 # scalatest-maven-plugin
 
-This repo provides an example of a project with the issue outlined in (TODO: Add link once issue is raised).
+This repo provides an example of a project with the issue outlined in [issue-68](https://github.com/scalatest/scalatest-maven-plugin/issues/68).
 
 ####Overview
 If the scalatest-maven-plugin is executed but scalatest is not on the classpath, the maven build fails with the following:
@@ -30,7 +30,7 @@ Caused by: java.lang.ClassNotFoundException: org.scalatest.tools.Runner
 [ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
 ```
 (NB: output of `mvn clean install -e -X` is at the bottom of the page)
-
+### a
 There is a mismatch of errors. Maven incorrectly claims that there are test failures, however this is not
 the case, the failures are actually due to scalatest not being on the classpath. 
 Indicated by a subsection of the log:
