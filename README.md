@@ -3,7 +3,7 @@
 This repo provides an example of a project with the issue outlined in (TODO: Add link once issue is raised).
 
 ####Overview
-If the scalatest-maven-plugin is executed but scala-test is not on the classpath, the maven build fails with the following error:
+If the scalatest-maven-plugin is executed but scalatest is not on the classpath, the maven build fails with the following:
 
 ```log
 [INFO] --- scalatest-maven-plugin:2.0.0:test (test) @ ideal-scenario ---
@@ -39,19 +39,9 @@ Error: Could not find or load main class org.scalatest.tools.Runner
 Caused by: java.lang.ClassNotFoundException: org.scalatest.tools.Runner
 ```
 
-####Full exaplanation of issue
-I understand that this is unusual, as intuitively, you would only expect the plugin to run where scalatests have been written (i.e. where the scalatest dependency is included as a dependency at test scope). However, in this project you will see I have defined the build pipeline at the top level, so that it cascades to the sub-modules. As the scala-maven-plugin can compile java (replacing the maven-compile-plugin) and scalatest-maven-plugin can run junit (replacing the maven-surefire-plugin), this doesn't seem like an unreasonable configuration.
-
-####Workarounds
-I currently have 2 workarounds:
-1) Add scalatest as a dependency at the top level, forcing the all modules to have this dependency. I don't like this as a solution, as it feels wrong to explicitly add a dependency to modules when it shouldn't really need the dependency.
-2) Define a build pipleine for every module, e.g. the top level pom and java-only module would depend only on the default maven pipeline and the mixed module (and any other future module) has its own build pipeline defined. Again I don't like this solution as any additional modules would need to define their own build pipelines (i.e. the poms would not be dry).
-
-####Potential solution
-I've thought about the issue, and the best solution I could think of was to change the scope of the scalatest dependency in scalatest-maven-plugin's pom from `test` to `runtime`. Unfortunatly I've had some trouble building the scala-maven-plugin, so I am unable to test if this works.
-Althought my understanding of maven is not perfect I would have thought that it would fix the issue in a clean, easy, and fairly backwards compatible way (I could be wrong, but I'd hope that if scalatest were dependency managed, by the user's project, the version of scalatest used by the plugin would change to the version the user had defined in dependency management). 
-
-
+####Workaround
+The simplest workaround is to add scalatest as a dependency test at the top level of the project, forcing the all sub-modules
+to have this dependency.
 
 
 
