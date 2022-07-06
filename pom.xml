@@ -28,7 +28,7 @@
         <junit.jupiter.version>5.5.0</junit.jupiter.version>
         <scalatest.version>3.2.0-M2</scalatest.version>
 
-        <scalatest.maven.plugin.version>2.0.0</scalatest.maven.plugin.version>
+        <scalatest.maven.plugin.version>2.1.0-SNAP2</scalatest.maven.plugin.version>
 
     </properties>
 
@@ -124,6 +124,9 @@
             <plugin>
                 <groupId>org.scalatest</groupId>
                 <artifactId>scalatest-maven-plugin</artifactId>
+                <!--<configuration>
+                    <noScalaTestIgnore>true</noScalaTestIgnore>
+                </configuration>-->
                 <executions>
                     <execution>
                         <id>test</id>
